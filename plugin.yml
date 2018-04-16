@@ -1,0 +1,17 @@
+name: HumanTowerPVP
+author: Danikileitor
+version: 1.0
+main: com.danikileitor.humantowerpvp.Main
+commands:
+   darEspada:
+      description: Te da a la Apliadora
+      permission: humantowerpvp.dar.espada
+      usage: /darEspada [Jugador]
+permissions:
+    humantowerpvp:
+        description: Vale para todo eres un pro que no te digan lo contrario
+        children:
+            humantowerpvp.dar.random: true
+    pescalocke.dar.espada:
+        description: Te permite dar a la Apliadora
+        default: not op
