@@ -96,8 +96,6 @@ public class Main extends JavaPlugin implements Listener{
 			Player p = (Player) e.getDamager();
 			ItemStack mano = p.getItemInHand();
 			ItemStack espada = getEspada();
-			e.getEntity().setInvulnerable(true);
-			e.getEntity().setGlowing(true);
 			e.getEntity().setSilent(true);
 			if (mismoItem(mano, espada)){
 				List<Entity> montados = e.getEntity().getPassengers();
