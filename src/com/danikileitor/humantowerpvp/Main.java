@@ -92,12 +92,12 @@ public class Main extends JavaPlugin implements Listener{
 	@EventHandler
 	public void onEntityHit(EntityDamageByEntityEvent e){
 		if (e.getDamager() instanceof Player){
-			getServer().broadcastMessage(e.getDamager().getName()+" > "+e.getEntity().getName());
 			Player p = (Player) e.getDamager();
 			ItemStack mano = p.getItemInHand();
 			ItemStack espada = getEspada();
-			e.getEntity().setSilent(true);
 			if (mismoItem(mano, espada)){
+				getServer().broadcastMessage(e.getDamager().getName()+" > "+e.getEntity().getName());
+				e.getEntity().setSilent(true);
 				List<Entity> montados = e.getEntity().getPassengers();
 	        	for (int i = 0; i < montados.size(); i++) {
 	        		
