@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -85,19 +88,37 @@ public class Main extends JavaPlugin implements Listener{
 		return n1.equals(n2);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onEntityHit(EntityDamageByEntityEvent e){
 		if (e.getDamager() instanceof Player){
 			getServer().broadcastMessage(e.getDamager().getName()+" > "+e.getEntity().getName());
 			Player p = (Player) e.getDamager();
-			@SuppressWarnings("deprecation")
 			ItemStack mano = p.getItemInHand();
-			ItemStack palo = getEspada();
-			if (mismoItem(mano, palo)){
+			ItemStack espada = getEspada();
+			e.getEntity().setInvulnerable(true);
+			e.getEntity().setGlowing(true);
+			e.getEntity().setSilent(true);
+			if (mismoItem(mano, espada)){
 				List<Entity> montados = e.getEntity().getPassengers();
 	        	for (int i = 0; i < montados.size(); i++) {
+	        		
+	        		//if (p.isEmpty() == true) {
+	        		//Location loc1 = p.getLocation().add(2,0,0);
+	        		//Location loc2 = p.getLocation().add(4,0,0);
+	        		//Location loc3 = p.getLocation().add(6,0,0);
+	        		//World world = p.getWorld();
+	        		//byte cero = 0;
+	        		//FallingBlock hueco1 = (FallingBlock) world.spawnFallingBlock(loc1, Material.AIR, cero);
+	        		//FallingBlock hueco2 = (FallingBlock) world.spawnFallingBlock(loc2, Material.AIR, cero);
+	        		//FallingBlock hueco3 = (FallingBlock) world.spawnFallingBlock(loc3, Material.AIR, cero);
+	        		//	p.addPassenger(hueco1);
+	        		//	hueco1.addPassenger(hueco2);
+	        		//	hueco2.addPassenger(hueco3);
+	        		//}
+	        		
 	    			p.addPassenger(montados.get(i));
-				}
+	        	}
 	        	p.addPassenger(e.getEntity());
 			}
 		}
