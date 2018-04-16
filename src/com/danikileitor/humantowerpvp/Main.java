@@ -1,10 +1,12 @@
 package com.danikileitor.humantowerpvp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -92,7 +94,11 @@ public class Main extends JavaPlugin implements Listener{
 			ItemStack mano = p.getItemInHand();
 			ItemStack palo = getEspada();
 			if (mismoItem(mano, palo)){
-				p.sendMessage("§4 Has golpeado a " + e.getDamager());
+				List<Entity> montados = e.getEntity().getPassengers();
+	        	for (int i = 0; i < montados.size(); i++) {
+	    			p.addPassenger(montados.get(i));
+				}
+	        	p.addPassenger(e.getEntity());
 			}
 		}
 	}
